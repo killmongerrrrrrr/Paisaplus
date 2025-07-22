@@ -17,9 +17,9 @@ const OwnerBios: React.FC = () => {
       title: "Co-Founder & CEO",
       description: "Financial strategist with a passion for making money management accessible to Gen Z.",
       expertise: ["Financial Planning", "Product Strategy", "User Experience"],
-      image: null, // Placeholder for future photo upload
+      image: "/arsalan.jpg", // Added photo reference
       social: {
-        linkedin: "#",
+        linkedin: "https://www.linkedin.com/in/arsalanahmedkhan001/",
         twitter: "#",
         email: "arsalan@paisaplus.com"
       }
@@ -30,9 +30,9 @@ const OwnerBios: React.FC = () => {
       title: "Co-Founder & CTO",
       description: "Tech innovator focused on building seamless financial tools for the digital generation.",
       expertise: ["Software Development", "Financial Technology", "Data Analytics"],
-      image: null,
+      image: "/syed sahil paisa plus.jpg", // Added photo reference
       social: {
-        linkedin: "#",
+        linkedin: "https://www.linkedin.com/in/syed-sahil-37aa34236",
         twitter: "#",
         email: "syed.sahil_bm24@praxis.ac.in"
       }
@@ -43,9 +43,9 @@ const OwnerBios: React.FC = () => {
       title: "Co-Founder & CMO",
       description: "Marketing expert dedicated to spreading financial literacy among young professionals.",
       expertise: ["Digital Marketing", "Community Building", "Content Strategy"],
-      image: null,
+      image: "/Farhan Q paisa .jpg", // Added photo reference
       social: {
-        linkedin: "#",
+        linkedin: "https://www.linkedin.com/in/farhan-qamar-603518228",
         twitter: "#",
         email: "farhan@paisaplus.com"
       }
@@ -81,12 +81,18 @@ const OwnerBios: React.FC = () => {
                 <div className="space-y-6">
                   {/* Profile Image Placeholder */}
                   <div className="text-center">
-                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <User className="w-12 h-12 text-white" />
-                    </div>
-                    <div className="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block">
-                      Photo placeholder - upload coming soon
-                    </div>
+                    {owner.image ? (
+                      <img
+                        src={owner.image}
+                        alt={owner.name}
+                        className="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-blue-200 group-hover:scale-110 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <User className="w-12 h-12 text-white" />
+                      </div>
+                    )}
+                    {/* Remove the placeholder text */}
                   </div>
 
                   {/* Basic Info */}
