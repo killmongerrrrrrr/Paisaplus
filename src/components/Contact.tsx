@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Send, CheckCircle, Mail, Phone, MapPin } from 'lucide-react';
 import emailjs from 'emailjs-com';
@@ -17,10 +17,7 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   
-  const recaptchaRef = useRef<any>(null);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -29,18 +26,9 @@ const Contact: React.FC = () => {
     }));
   };
 
-  const handleRecaptchaChange = (token: string | null) => {
-    setRecaptchaToken(token);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!recaptchaToken) {
-      alert('Please complete the reCAPTCHA verification.');
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -63,10 +51,6 @@ const Contact: React.FC = () => {
 
       setShowThankYou(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
-      }
-      setRecaptchaToken(null);
 
       // Hide thank you message after 5 seconds
       setTimeout(() => {
@@ -171,17 +155,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 {/* reCAPTCHA Placeholder */}
-                <div className="flex justify-center">
-                  <div className="bg-gray-100 p-4 rounded-xl border-2 border-dashed border-gray-300">
-                    <p className="text-gray-600 text-center">
-                      reCAPTCHA will be implemented here
-                      <br />
-                      <small className="text-gray-500">
-                        (Add your site key after deployment)
-                      </small>
-                    </p>
-                  </div>
-                </div>
+                {/* Removed reCAPTCHA UI and placeholder */}
 
                 <button
                   type="submit"
